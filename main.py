@@ -13,9 +13,10 @@ load_dotenv()
 
 os.environ["GROQ_API_KEY"] = os.getenv("GROQ_API_KEY")
 os.environ["LANGCHAIN_API_KEY"] = os.getenv("LANGCHAIN_API_KEY")
+MODEL = os.getenv("MODEL")
 
 
-model = ChatGroq(model="llama3-8b-8192")
+model = ChatGroq(model=MODEL)
 
 def get_character_initial_prompt(character_name: str) -> str:
     """
@@ -24,6 +25,7 @@ def get_character_initial_prompt(character_name: str) -> str:
     with open('roles.yaml', 'r') as file:
         data = yaml.safe_load(file)
     return data["characters"][character_name]
+
 
 def chat_with_character(character_name: str):
     """
